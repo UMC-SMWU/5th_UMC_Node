@@ -1,4 +1,4 @@
-import mysql from 'mysql'; // mysql 모듈을 불러옵니다.
+const mysql = require('mysql'); // mysql 모듈을 불러옵니다.
 
 // 커넥션을 정의합니다.
 // RDS Console 에서 본인이 설정한 값을 입력해주세요.
@@ -11,8 +11,10 @@ var connection = mysql.createConnection({
 
 // RDS에 접속합니다.
 connection.connect();
-connection.query("SELECT * FROM umc",function(error, results, fields){
+
+connection.query('SELECT * from umc', function (error, results, fields) {
   if (error) throw error;
-  console.log(results);
+  console.log('users: ', results);
 });
-console.log(rows);
+
+connection.end();
