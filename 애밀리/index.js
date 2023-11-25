@@ -1,25 +1,14 @@
+// index.js
+
 import express from 'express';
+import { tempRouter } from './src/routes/temp.route';
 
 const app = express();
 const port = 3000;
 
-const myLogger = (req, res, next) => {
-    console.log("LOGGED");
-    next();
-}
-
-app.use(myLogger);
-
-app.get('/', (req, res) => {
-    console.log("/");
-    res.send('Hello UMC!');
-});
-
-app.get('/hello', (req, res) => {
-    console.log("/hello");
-    res.send('Hello world!');
-});
+// router setting
+app.use('/temp', tempRouter);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Example app listening on port ${port}`)
 });
