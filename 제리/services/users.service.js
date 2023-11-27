@@ -1,7 +1,7 @@
-import { insertUser, setUserFoodType } from '../daos/user.dao';
+import { insertUser, setUserFoodType } from '../daos/users.dao';
 import { BaseError } from 'sequelize';
 import { status } from '../config/response.status';
-import { createUserResponseDTO } from '../dtos/user.dto';
+import { createUserResponseDTO } from '../dtos/create-user-response.dto';
 
 export const createUser = async (body) => {
     try {
