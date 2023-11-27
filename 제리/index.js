@@ -6,7 +6,11 @@ import { status } from './config/response.status.js';
 
 dotenv.config();
 
+import { usersRouter } from './src/routes/users.route.js';
+
 const app = express();
+
+app.use('/users', usersRouter);
 
 app.set('port', process.env.PORT || 3000);
 app.use(cors());
