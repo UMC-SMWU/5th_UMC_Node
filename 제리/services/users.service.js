@@ -1,19 +1,22 @@
-import { insertUser, setUserFoodType } from '../daos/users.dao';
-import { BaseError } from 'sequelize';
+import { insertUser, setUserFoodType, getUserFoodTypeNamesById } from '../daos/users.dao';
+import { BaseError } from '../config/error';
 import { status } from '../config/response.status';
 import { createUserResponseDTO } from '../dtos/create-user-response.dto';
 
 export const createUser = async (body) => {
     try {
         const user = await insertUser(body);
-        const userFoodTypes = [];
         for (let i = 0; i < body.food_types.length; i++) {
-            const userFoodType = await setUserFoodType(user, body.food_types[i]);
-            userFoodTypes.push(userFoodType[0].dataValues.FoodTypeId);
+            await setUserFoodType(user, body.food_types[i]);
         }
-        return createUserResponseDTO(user, userFoodTypes);
+        return createUserResponseDTO(user, await getUserFoodTypeNamesById(user.id));
     } catch (err) {
-        console.log(err);
-        throw new BaseError(status.INTERNAL_SERVER_ERROR);
+        if (err.name === 'SequelizeUniqueConstraintError') {
+            throw new BaseError(status.DUPLICATE_ENTRY);
+        } else if (err.name === 'SequelizeValidationError') {
+            throw new BaseError(status.BAD_REQUEST);
+        } else {
+            throw new BaseError(status.INTERNAL_SERVER_ERROR);
+        }
     }
 };

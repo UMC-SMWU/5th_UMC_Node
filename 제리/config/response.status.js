@@ -37,18 +37,10 @@ export const status = {
         code: 'COMMON005',
         message: '요청한 페이지를 찾을 수 없습니다. 관리자에게 문의 바랍니다.',
     },
-
-    //user error
-    DUPLICATE_EMAIL: {
-        status: StatusCodes.BAD_REQUEST,
+    DUPLICATE_ENTRY: {
+        status: StatusCodes.CONFLICT,
         isSuccess: false,
-        code: 'USER000',
-        message: '중복된 이메일 주소입니다.',
-    },
-    MISSING_SIGNUP_DATA: {
-        status: StatusCodes.BAD_REQUEST,
-        isSuccess: false,
-        code: 'USER001',
-        message: '회원가입에 필요한 데이터가 누락되었습니다.',
+        code: 'COMMON006',
+        message: '중복된 항목입니다.',
     },
 };
