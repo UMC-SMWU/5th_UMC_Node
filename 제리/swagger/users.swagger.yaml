@@ -1,0 +1,108 @@
+paths:
+    /users:
+        post:
+            summary: '회원가입'
+            parameters:
+                - in: body
+                  name: 'user'
+                  required: true
+                  schema:
+                      $ref: '#/definitions/User'
+            responses:
+                '200':
+                    description: '회원 가입 성공!'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: true
+                            code:
+                                type: integer
+                                example: 2000
+                            message:
+                                type: string
+                                example: 'success!'
+                            result:
+                                type: object
+                                example:
+                                    { 'email': 'email@gmail.com', 'name': '홍길동', 'food_types': ['한식', '일식'] }
+                '400':
+                    description: '유저 정보 에러'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: false
+                            code:
+                                type: integer
+                                example: 'COMMON001'
+                            message:
+                                type: string
+                                example: '잘못된 요청입니다.'
+                '409':
+                    description: '이메일 중복'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: false
+                            code:
+                                type: integer
+                                example: 'COMMON006'
+                            message:
+                                type: string
+                                example: '중복된 항목입니다.'
+                '500':
+                    description: '서버 에러'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: false
+                            code:
+                                type: integer
+                                example: 'COMMON000'
+                            message:
+                                type: string
+                                example: '서버 에러, 관리자에게 문의 바랍니다.'
+definitions:
+    User:
+        properties:
+            name:
+                type: string
+                example: '홍길동'
+            gender:
+                type: string
+                example: '남'
+            birth:
+                type: string
+                format: date
+                example: '2023-11-28'
+            address:
+                type: string
+                example: '서울특별시 용산구 가나다아파트'
+            address_detail:
+                type: string
+                example: 'A동 B호'
+            email:
+                type: string
+                format: email
+                example: 'email@gmail.com'
+            phone:
+                type: string
+                format: phone
+                example: '010-1234-5678'
+            food_types:
+                type: array
+                example: [1, 2]
+        required:
+            - name
+            - gender
+            - birth
+            - address
+            - email
+            - food_types
