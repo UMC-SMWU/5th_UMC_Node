@@ -10,6 +10,7 @@ import { status } from './config/response.status.js';
 import { BaseError } from './config/error.js';
 
 import { usersRouter } from './routes/users.route.js';
+import { storesRouter } from './routes/stores.route.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 
 app.use('/users', usersRouter);
+app.use('/stores', storesRouter);
 
 app.use((req, res, next) => {
     const err = new BaseError(status.NOT_FOUND);
