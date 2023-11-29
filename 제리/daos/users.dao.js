@@ -1,5 +1,4 @@
 import { User, FoodType } from '../models';
-import { status } from '../config/response.status';
 
 export const insertUser = async (data) => {
     return User.create({
