@@ -49,6 +49,7 @@ class User extends Sequelize.Model {
     }
     static associate(db) {
         db.User.belongsToMany(db.FoodType, { through: 'UserFoodType' });
+        db.User.belongsToMany(db.Mission, { through: db.UserMission });
     }
 }
 
