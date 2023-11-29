@@ -1,6 +1,6 @@
-export const createStoreResponseDTO = (store, regionName) => {
+export const createStoreResponseDTO = (store, region) => {
     return {
         store_name: store.name,
-        region_name: regionName,
+        region_name: region.name,
     };
 };
