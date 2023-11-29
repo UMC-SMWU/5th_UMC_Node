@@ -1,13 +1,13 @@
-import { insertStore } from '../daos/stores.dao';
-import { getRegionName } from '../daos/regions.dao';
+import { insertMission } from '../daos/missions.dao';
+import { getStoreName } from '../daos/stores.dao';
 import { BaseError } from '../config/error';
 import { status } from '../config/response.status';
-import { createStoreResponseDTO } from '../dtos/create-store-response.dto';
+import { createMissionResponseDTO } from '../dtos/create-mission-response.dto';
 
-export const createStore = async (body) => {
+export const createMission = async (body) => {
     try {
-        const store = await insertStore(body);
-        return createStoreResponseDTO(store, await getRegionName(body.region_id));
+        const mission = await insertMission(body);
+        return createMissionResponseDTO(mission, await getStoreName(body.store_id));
     } catch (err) {
         if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeDatabaseError') {
             throw new BaseError(status.BAD_REQUEST);

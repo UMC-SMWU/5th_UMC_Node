@@ -11,10 +11,10 @@ export const createUser = async (body) => {
         }
         return createUserResponseDTO(user, await getUserFoodTypeNamesById(user.id));
     } catch (err) {
-        if (err.name === 'SequelizeUniqueConstraintError') {
-            throw new BaseError(status.DUPLICATE_ENTRY);
-        } else if (err.name === 'SequelizeValidationError') {
+        if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeDatabaseError') {
             throw new BaseError(status.BAD_REQUEST);
+        } else if (err.name === 'SequelizeUniqueConstraintError') {
+            throw new BaseError(status.DUPLICATE_ENTRY);
         } else {
             throw new BaseError(status.INTERNAL_SERVER_ERROR);
         }
