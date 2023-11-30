@@ -32,3 +32,11 @@ export const getUserFoodTypeNamesById = async (userId) => {
         ],
     });
 };
+
+export const getUserName = async (userId) => {
+    return User.findOne({
+        raw: true,
+        where: { id: parseInt(userId, 10) },
+        attributes: ['name'],
+    });
+};
