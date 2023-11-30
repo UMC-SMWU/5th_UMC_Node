@@ -8,3 +8,11 @@ export const insertMission = async (data) => {
         deadline: data.deadline,
     });
 };
+
+export const getById = async (missionId) => {
+    return Mission.findByPk(missionId);
+};
+
+export const insertUserMission = async (mission, userId) => {
+    return mission.addUser(userId);
+};
