@@ -5,6 +5,7 @@
   "description": "- 자신이 원하는 위치에 자신의 파트 레파지토리 중 자신의 깃허브 닉네임 branch를 클론해줍니다",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

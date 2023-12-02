@@ -1,14 +1,16 @@
 // 원하는 결과를 얻어내는 쿼리
 
-export const insertUserSql = "INSERT INTO user (email, user_name, gender, birth, user_address, user_spec_address, user_phone) VALUES (?, ?, ?, ?, ?, ?, ?);";
+// models/user.sql.js
 
-export const getUserID = "SELECT * FROM user WHERE user_id = ?";
+export const insertUserSql = "INSERT INTO user (email, name, gender, birth, addr, spec_addr, phone) VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+export const getUserID = "SELECT * FROM user WHERE id = ?";
 
 export const connectFoodCategory = "INSERT INTO user_favor_category (f_category_id, user_id) VALUES (?, ?);";
 
 export const confirmEmail = "SELECT EXISTS(SELECT 1 FROM user WHERE email = ?) as isExistEmail";
 
 export const getPreferToUserID =
-"SELECT ufc.uf_category_id, ufc.f_category_id, ufc.user_id, fcl.f_category_name "
-+ "FROM user_favor_category ufc JOIN food_category_list fcl on ufc.f_category_id = fcl.f_category_id "
+"SELECT ufc.id, ufc.f_category_id, ufc.user_id, fcl.f_category_name "
++ "FROM user_favor_category ufc JOIN food_category_list fcl on ufc.f_category_id = fcl.id "
 + "WHERE ufc.user_id = ? ORDER BY ufc.f_category_id ASC;";

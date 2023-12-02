@@ -16,13 +16,15 @@ export const addUser = async (data) => {
             conn.release();
             return -1;
         }
-
+        
         const result = await pool.query(insertUserSql, [data.email, data.name, data.gender, data.birth, data.addr, data.specAddr, data.phone]);
+        // 여기서 오류 발생
 
         conn.release();
         return result[0].insertId;
-        
+    
     }catch (err) {
+        console.log(err.message);
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
@@ -59,7 +61,6 @@ export const setPrefer = async (userId, foodCategoryId) => {
         return;
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);
-
     }
 }
 
@@ -67,12 +68,13 @@ export const setPrefer = async (userId, foodCategoryId) => {
 export const getUserPreferToUserID = async (userID) => {
     try {
         const conn = await pool.getConnection();
-        const prefer = await pool.query(getPreferToUserID, userID);
-
+        const prefer = await pool.query(getPreferToUserID, String(userID));
+        console.log("getUserPreferToUserID result:", prefer);  // 확인용
         conn.release();
 
         return prefer;
     } catch (err) {
+        console.log("Error in getUserPreferToUserID:", err.message);
         throw new BaseError(status.PARAMETER_IS_WRONG);
     }
 }
