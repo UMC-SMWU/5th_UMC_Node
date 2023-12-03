@@ -30,14 +30,11 @@ export const getReview = async (reviewID) => {
     try {
         const conn = await pool.getConnection();
         const [review] = await pool.query(getReviewID, reviewID);
-
-        console.log(reivew);
-
         if(review.length == 0){
             return -1;
         }
-
         conn.release();
+        console.log("review is", review);
         return review;
     } catch (err) {
         throw new BaseError(status.PARAMETER_IS_WRONG);

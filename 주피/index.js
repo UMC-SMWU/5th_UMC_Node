@@ -30,8 +30,8 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 // router setting
 // app.use('/temp', tempRouter);
 // app.use('/user', userRouter);
-// app.use('/store', storeRouter);
-app.use('/review', reviewRouter);
+app.use('/store', storeRouter);
+// app.use('/review', reviewRouter);
 
 app.use((err, req, res, next) => {
     // 템플릿 엔진 변수 설정

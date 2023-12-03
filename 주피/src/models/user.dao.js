@@ -69,7 +69,6 @@ export const getUserPreferToUserID = async (userID) => {
     try {
         const conn = await pool.getConnection();
         const prefer = await pool.query(getPreferToUserID, String(userID));
-        console.log("getUserPreferToUserID result:", prefer);  // 확인용
         conn.release();
 
         return prefer;
