@@ -32,6 +32,11 @@ export const status = {
         "isSuccess": false,
         "code": "MEMBER001",
         "message": "이미 가입된 이메일입니다."
+      },
+    STORE_ALREADY_EXISTS: {
+        "status": StatusCodes.CONFLICT,
+        "isSuccess": false,
+        "code": "STORE001",
+        "message": "이미 등록된 가게입니다."
       }
-    // -1을 반환해서 에러 처리하라는데...
 }
