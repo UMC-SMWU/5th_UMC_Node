@@ -12,6 +12,7 @@ import { BaseError } from './config/error.js';
 import { usersRouter } from './routes/users.route.js';
 import { storesRouter } from './routes/stores.route.js';
 import { missionsRouter } from './routes/missions.route.js';
+import { reviewsRouter } from './routes/reviews.route.js';
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 app.use('/users', usersRouter);
 app.use('/stores', storesRouter);
 app.use('/missions', missionsRouter);
+app.use('/reviews', reviewsRouter);
 
 app.use((req, res, next) => {
     const err = new BaseError(status.NOT_FOUND);
