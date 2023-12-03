@@ -3,7 +3,7 @@ import { status } from "../../config/response.status.js";
 
 // import { joinUser } from "../services/user.service.js";
 
-export const storeAdd = async (req, res, next) => {
+export const storeRegister = async (req, res, next) => {
     console.log("가게 추가를 요청하였습니다!");
     console.log("body:", req.body); // 값이 잘 들어오나 찍어보기 위한 테스트용
 
