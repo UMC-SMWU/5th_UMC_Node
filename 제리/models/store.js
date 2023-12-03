@@ -32,6 +32,7 @@ class Store extends Sequelize.Model {
     static associate(db) {
         db.Store.belongsTo(db.Region, { foreignKey: 'region_id' });
         db.Store.hasMany(db.Mission, { foreignKey: 'store_id' });
+        db.Store.hasMany(db.Review, { foreignKey: 'store_id' });
     }
 }
 

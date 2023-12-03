@@ -36,6 +36,7 @@ class Mission extends Sequelize.Model {
     static associate(db) {
         db.Mission.belongsToMany(db.User, { through: db.UserMission });
         db.Mission.belongsTo(db.Store, { foreignKey: 'store_id' });
+        db.Mission.hasMany(db.Review, { foreignKey: 'mission_id' });
     }
 }
 

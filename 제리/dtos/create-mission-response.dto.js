@@ -1,8 +1,8 @@
-export const createMissionResponseDTO = (mission, storeName) => {
+export const createMissionResponseDTO = (mission, store) => {
     return {
         target_amount: mission.target_amount,
         reward: mission.reward,
         deadline: mission.deadline,
-        store_name: storeName,
+        store_name: store.name,
     };
 };

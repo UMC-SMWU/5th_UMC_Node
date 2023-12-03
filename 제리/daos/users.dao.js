@@ -35,8 +35,9 @@ export const getUserFoodTypeNamesById = async (userId) => {
 
 export const getUserName = async (userId) => {
     return User.findOne({
-        raw: true,
-        where: { id: parseInt(userId, 10) },
+        where: {
+            id: userId,
+        },
         attributes: ['name'],
     });
 };
