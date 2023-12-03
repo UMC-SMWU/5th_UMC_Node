@@ -13,6 +13,7 @@ import { status } from "./config/response.status.js";
 import { response } from "./config/response.js";
 import SwaggerUi from 'swagger-ui-express';
 import { storeRouter } from './src/routes/store.route.js';
+import { reviewRouter } from './src/routes/review.route.js';
 
 const app = express();
 
@@ -29,7 +30,8 @@ app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(specs));
 // router setting
 // app.use('/temp', tempRouter);
 // app.use('/user', userRouter);
-app.use('/store', storeRouter);
+// app.use('/store', storeRouter);
+app.use('/review', reviewRouter);
 
 app.use((err, req, res, next) => {
     // 템플릿 엔진 변수 설정
