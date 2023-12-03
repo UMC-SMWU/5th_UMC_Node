@@ -8,8 +8,7 @@ export const addStore = async (data) => {
     try {
         const conn = await pool.getConnection();
 
-        const [confirm] = await pool.query(confirmStore, data.store_id);
-        // 이 부분 맞는지 확인 필요할 듯
+        const [confirm] = await pool.query(confirmStore, [data.name, data.region_id]);
 
         if(confirm[0].isExistStore){
             conn.release();

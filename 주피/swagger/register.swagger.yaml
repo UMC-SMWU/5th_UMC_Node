@@ -4,7 +4,7 @@ paths:
       tags:
         - Store
       summary: 가게 등록
-      paramters:
+      parameters:
       - name: register
         in: body
         required: true

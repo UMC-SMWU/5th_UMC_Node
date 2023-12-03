@@ -9,7 +9,8 @@ export const registerStore = async (body) => {
     const registerStoreData = await addStore({
         'name': body.name,
         'addr': body.addr,
-        'score': body.score
+        'score': body.score,
+        'region_id': body.region_id
     })
 
     if(registerStoreData == -1){
