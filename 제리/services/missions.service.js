@@ -1,10 +1,11 @@
-import { insertMission, getById, insertUserMission } from '../daos/missions.dao';
+import { insertMission, getById, insertUserMission, selectMissionByStoreId } from '../daos/missions.dao';
 import { getStoreName } from '../daos/stores.dao';
 import { getUserName } from '../daos/users.dao';
 import { BaseError } from '../config/error';
 import { status } from '../config/response.status';
 import { createMissionResponseDTO } from '../dtos/create-mission-response.dto';
 import { createUserMissionResponseDTO } from '../dtos/create-user_mission-response.dto';
+import { findMissionResponseDTO } from '../dtos/find-mission-response.dto';
 
 export const createMission = async (body) => {
     try {
@@ -45,5 +46,15 @@ export const createUserMission = async (userId, params) => {
         } else {
             throw new BaseError(status.INTERNAL_SERVER_ERROR);
         }
+    }
+};
+
+export const findMissionByStoreId = async (params, query) => {
+    try {
+        const { missionId, limit = 3 } = query;
+        const missions = await selectMissionByStoreId(params.storeId, missionId, limit);
+        return findMissionResponseDTO(missions);
+    } catch (err) {
+        throw new BaseError(status.INTERNAL_SERVER_ERROR);
     }
 };
