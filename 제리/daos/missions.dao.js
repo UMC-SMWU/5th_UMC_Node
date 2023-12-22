@@ -80,3 +80,17 @@ export const selectMissionByUserId = async (userId, missionId, limit) => {
         limit: limit,
     });
 };
+
+export const getUserMissionByPk = async (missionId, userId) => {
+    return UserMission.findOne({
+        where: {
+            mission_id: missionId,
+            user_id: userId,
+        },
+    });
+};
+
+export const updateStatus = (userMission) => {
+    userMission.status = 1;
+    userMission.save();
+};
