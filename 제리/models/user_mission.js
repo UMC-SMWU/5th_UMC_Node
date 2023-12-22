@@ -22,7 +22,10 @@ class UserMission extends Sequelize.Model {
             }
         );
     }
-    static associate(db) {}
+    static associate(db) {
+        db.UserMission.belongsTo(db.Mission, { foreignKey: 'mission_id' });
+        db.UserMission.belongsTo(db.User, { foreignKey: 'user_id' });
+    }
 }
 
 module.exports = UserMission;
