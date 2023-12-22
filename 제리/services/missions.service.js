@@ -4,6 +4,8 @@ import {
     insertUserMission,
     selectMissionByStoreId,
     selectMissionByUserId,
+    getUserMissionByPk,
+    updateStatus,
 } from '../daos/missions.dao';
 import { getStoreName } from '../daos/stores.dao';
 import { getUserName } from '../daos/users.dao';
@@ -72,5 +74,22 @@ export const findMissionByUserId = async (params, query) => {
         return findMissionResponseDTO(missions);
     } catch (err) {
         throw new BaseError(status.INTERNAL_SERVER_ERROR);
+    }
+};
+
+export const updateUserMission = async (params) => {
+    try {
+        const userMission = await getUserMissionByPk(params.missionId, params.userId);
+        if (!userMission || userMission.dataValues.status == 1) {
+            throw new BaseError(status.BAD_REQUEST);
+        }
+        updateStatus(userMission);
+        return;
+    } catch (err) {
+        if (err instanceof BaseError) {
+            throw err;
+        } else {
+            throw new BaseError(status.INTERNAL_SERVER_ERROR);
+        }
     }
 };
