@@ -1,4 +1,4 @@
-import { Review } from '../models';
+import { Review, User } from '../models';
 
 export const insertReview = async (userId, data) => {
     return Review.create({
@@ -7,5 +7,21 @@ export const insertReview = async (userId, data) => {
         mission_id: data.mission_id,
         rating: data.rating,
         content: data?.content,
+    });
+};
+
+export const selectReviewByUserId = async (userId) => {
+    return Review.findAll({
+        raw: true,
+        where: {
+            user_id: userId,
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['name'],
+            },
+        ],
+        attributes: ['created_at', 'rating', 'content'],
     });
 };
