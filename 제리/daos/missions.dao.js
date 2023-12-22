@@ -1,4 +1,4 @@
-import { Mission, Store } from '../models';
+import { Mission, Store, UserMission } from '../models';
 import { Op } from 'sequelize';
 
 export const insertMission = async (data) => {
@@ -21,12 +21,12 @@ export const insertUserMission = async (mission, userId) => {
 export const selectMissionByStoreId = async (storeId, missionId, limit) => {
     const condition = {
         store_id: storeId,
-        ...(missionId !== undefined && { id: { [Op.lt]: missionId } }),
     };
-    return buildSelectQuery(condition, limit);
-};
-
-const buildSelectQuery = (condition, limit) => {
+    if (missionId !== undefined) {
+        condition.id = {
+            [Op.lt]: missionId,
+        };
+    }
     return Mission.findAll({
         raw: true,
         where: condition,
@@ -38,6 +38,45 @@ const buildSelectQuery = (condition, limit) => {
         ],
         attributes: ['reward', 'target_amount'],
         order: [['id', 'DESC']],
+        limit: limit,
+    });
+};
+
+export const selectMissionByUserId = async (userId, missionId, limit) => {
+    const condition = {
+        user_id: userId,
+        status: 0,
+    };
+    if (missionId !== undefined) {
+        const mission = await UserMission.findOne({
+            raw: true,
+            where: {
+                mission_id: missionId,
+                user_id: userId,
+            },
+            attributes: ['created_at'],
+        });
+        condition.created_at = {
+            [Op.lt]: mission?.created_at,
+        };
+    }
+    return UserMission.findAll({
+        raw: true,
+        where: condition,
+        include: [
+            {
+                model: Mission,
+                attributes: ['reward', 'target_amount'],
+                include: [
+                    {
+                        model: Store,
+                        attributes: ['name'],
+                    },
+                ],
+            },
+        ],
+        attributes: [],
+        order: [['created_at', 'DESC']],
         limit: limit,
     });
 };
