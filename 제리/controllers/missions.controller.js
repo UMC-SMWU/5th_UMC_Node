@@ -6,6 +6,7 @@ import {
     createUserMission,
     findMissionByStoreId,
     findMissionByUserId,
+    updateUserMission,
 } from '../services/missions.service';
 
 export const addMission = async (req, res, next) => {
@@ -23,4 +24,8 @@ export const fetchStoreMissions = async (req, res, next) => {
 
 export const fetchUserMissions = async (req, res, next) => {
     res.send(response(status.SUCCESS, await findMissionByUserId(req.params, req.query)));
+};
+
+export const completeMission = async (req, res, next) => {
+    res.send(response(status.SUCCESS, await updateUserMission(req.params)));
 };
