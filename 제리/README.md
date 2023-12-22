@@ -1,28 +1,26 @@
 ### 미션
 
--   [x] 회원 가입하기 API
--   [x] 특정 지역에 가게 추가하기 API
--   [x] 가게에 리뷰 추가하기 API
--   [x] 가게에 미션 추가하기 API
--   [x] 가게의 미션을 도전 중인 미션에 추가(미션 도전하기) API
+-   [x] 특정 가게의 리뷰 목록 API
+-   [x] 내가 작성한 리뷰 목록 API
+-   [x] 특정 가게의 미션 목록 API
+-   [x] 내가 진행 중인 미션 목록 API
+-   [x] 진행 중인 미션 진행 완료로 변경 API
 
 #### [조건]
 
--   github branch를 만들 때 issue를 만들고 branch 생성하여 진행 후 push할 것
--   route, controller, dto, service, model을 모두 활용할 것
--   리뷰 추가 시, 리뷰를 작성하려는 가게가 존재하는지 검증해야 함
--   미션 도전 시, 도전하려는 미션이 이미 도전 중인지를 검증해야 함
--   로그인 기능이 없는 관계로 리뷰를 작성하거나 미션 도전하는 유저는 하드 코딩으로 할 것
+-   반드시 Paging 처리를 해야 한다. (프론트엔드는 1 이상의 page 번호를 전달한다.)
+-   필요한 데이터는 데이터베이스에서 직접 삽입을 해서 진행한다. (미션 외 API는 구현해도 된다. 다만 미션 외 API는 작성을 해도 구현한 API 개수로 카운트 되지 않는다.)
+-   반드시 모든 API에 대해 Swagger 명세를 해야 한다.
 
 <br>
 
 ### 미션 기록
 
--   회원 가입 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/17
--   가게 추가 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/18
--   리뷰 추가 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/21
--   미션 추가 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/23
--   미션 도전 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/25
+-   특정 가게의 리뷰 목록 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/46
+-   내가 작성한 리뷰 목록 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/42
+-   특정 가게의 미션 목록 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/43
+-   내가 진행 중인 미션 목록 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/44
+-   진행 중인 미션 진행 완료로 변경 API 구현: https://github.com/UMC-SMWU/5th_UMC_Node/issues/45
 
 #### [ERD]
 
