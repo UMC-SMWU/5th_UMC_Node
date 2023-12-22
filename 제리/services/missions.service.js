@@ -1,4 +1,10 @@
-import { insertMission, getById, insertUserMission, selectMissionByStoreId } from '../daos/missions.dao';
+import {
+    insertMission,
+    getById,
+    insertUserMission,
+    selectMissionByStoreId,
+    selectMissionByUserId,
+} from '../daos/missions.dao';
 import { getStoreName } from '../daos/stores.dao';
 import { getUserName } from '../daos/users.dao';
 import { BaseError } from '../config/error';
@@ -53,6 +59,16 @@ export const findMissionByStoreId = async (params, query) => {
     try {
         const { missionId, limit = 3 } = query;
         const missions = await selectMissionByStoreId(params.storeId, missionId, limit);
+        return findMissionResponseDTO(missions);
+    } catch (err) {
+        throw new BaseError(status.INTERNAL_SERVER_ERROR);
+    }
+};
+
+export const findMissionByUserId = async (params, query) => {
+    try {
+        const { missionId, limit = 3 } = query;
+        const missions = await selectMissionByUserId(params.userId, missionId, limit);
         return findMissionResponseDTO(missions);
     } catch (err) {
         throw new BaseError(status.INTERNAL_SERVER_ERROR);
