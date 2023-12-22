@@ -164,6 +164,59 @@ paths:
                             message:
                                 type: string
                                 example: '서버 에러, 관리자에게 문의 바랍니다.'
+    /missions/stores/{storeId}:
+        get:
+            summary: '가게 미션 조회'
+            parameters:
+                - in: path
+                  name: storeId
+                  required: true
+                  type: integer
+                - in: query
+                  name: missionId
+                  required: false
+                  type: integer
+                - in: query
+                  name: limit
+                  required: false
+                  type: integer
+            responses:
+                '200':
+                    description: '미션 조회 성공'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: true
+                            code:
+                                type: integer
+                                example: 2000
+                            message:
+                                type: string
+                                example: 'success!'
+                            result:
+                                type: object
+                                example:
+                                    [
+                                        { 'reward': 500, 'store_name': '가게 1', 'target_amount': 10000 },
+                                        { 'reward': 1000, 'store_name': '가게 2', 'target_amount': 15000 },
+                                        { 'reward': 500, 'store_name': '가게 3', 'target_amount': 15000 },
+                                    ]
+                '500':
+                    description: '서버 에러'
+                    schema:
+                        type: object
+                        properties:
+                            isSuccess:
+                                type: boolean
+                                example: false
+                            code:
+                                type: integer
+                                example: 'COMMON000'
+                            message:
+                                type: string
+                                example: '서버 에러, 관리자에게 문의 바랍니다.'
 definitions:
     Mission:
         properties:
