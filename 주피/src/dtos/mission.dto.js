@@ -1,3 +1,3 @@
-export const addUserMissionResponseDTO = (mission, user_mission) => {
-    return {"status": user_mission[0].status};
+export const addUserMissionResponseDTO = (user_mission) => {
+    return {"mission_id": user_mission.mission_id};
 }

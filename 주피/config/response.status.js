@@ -4,7 +4,7 @@ export const status = {
     SUCCESS: {
         "status": StatusCodes.OK,
         "isSuccess": true,
-        "code": 2000,
+        "code": 200,
         "message": "success!",
         "data": {
           "email": "swaggerTest@mail.com",

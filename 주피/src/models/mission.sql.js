@@ -1,8 +1,4 @@
-export const addUserMissionSql = "INSERT INTO user_mission (user_id, mission_id, status) VALUES (?, ?, ?);"
-
-// export const getUserID = "SELECT * FROM user WHERE id = ?";
-
-// export const getMissionID = "SELECT * FROM mission WHERE id = ?";
+export const addUserMissionSql = "INSERT INTO user_mission (mission_id) VALUES (?);"
 
 export const getUserMissionID = "SELECT * FROM user_mission WHERE id = ?";
 
